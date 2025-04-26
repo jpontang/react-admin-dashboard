@@ -4,6 +4,7 @@ import { Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useGetUserQuery } from "../../state/api";
 import Sidebar from "../../components/Sidebar";
+import Navbar from "../../components/Navbar";
 const Layout = () => {
     const isNonMobile = useMediaQuery("(min-width: 600px)");
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -19,7 +20,14 @@ const Layout = () => {
               isSidebarOpen={isSidebarOpen}
               setIsSidebarOpen={setIsSidebarOpen}
               />
-            <Outlet />
+            <Box flexGrow={1}>
+              <Navbar 
+              user={data || {}}
+              isSidebarOpen={isSidebarOpen}
+              setIsSidebarOpen={setIsSidebarOpen}
+              />
+               <Outlet />
+            </Box>           
       </Box>
     );
 };
